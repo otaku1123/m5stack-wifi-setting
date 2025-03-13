@@ -9,4 +9,5 @@ public:
     void showMessage(const String& message);
     void showWiFiScanResults(const String& results);
     void showWiFiConnectionStatus(const String& status);
+    void showQrCode(const String& url);
 };

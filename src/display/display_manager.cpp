@@ -15,7 +15,9 @@ void DisplayManager::showAPInfo(const String& ssid, const String& password, cons
     M5.Lcd.setCursor(10, 60);
     M5.Lcd.print("Password: " + password);
     M5.Lcd.setCursor(10, 90);
-    M5.Lcd.print("Access: http://" + ip);
+    M5.Lcd.print("Scan QR Code to connect");
+
+    showQrCode("http://" + ip);
 }
 
 void DisplayManager::showMessage(const String& message) {
@@ -38,4 +40,9 @@ void DisplayManager::showWiFiConnectionStatus(const String& status) {
     M5.Lcd.print("Wi-Fi Status:");
     M5.Lcd.setCursor(10, 40);
     M5.Lcd.print(status);
+}
+
+void DisplayManager::showQrCode(const String& url) {
+    // URLをQRコードで表示（X:50, Y:120, サイズ150px）
+    M5.Lcd.qrcode(url, 50, 120, 120);
 }
