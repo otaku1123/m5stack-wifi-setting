@@ -2,7 +2,8 @@
 #include "web_server/web_server_manager.h"
 #include <M5Stack.h>
 
-WiFiManager wifiManager;
+DisplayManager display;
+WiFiManager wifiManager(display);
 WebServerManager webServerManager(wifiManager);
 
 void setup() {

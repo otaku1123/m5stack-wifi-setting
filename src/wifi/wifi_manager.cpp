@@ -1,10 +1,11 @@
 #include "wifi_manager.h"
 
-WiFiManager::WiFiManager() {}
+WiFiManager::WiFiManager(DisplayManager& display) : display(display) {}
 
 void WiFiManager::startAP()
 {
     WiFi.softAP(apSsid, apPassword);
+    display.showAPInfo(apSsid, apPassword, WiFi.softAPIP().toString());
 }
 
 void WiFiManager::connectToWiFi(const char *ssid, const char *password)
@@ -25,10 +26,12 @@ void WiFiManager::connectToWiFi(const char *ssid, const char *password)
     if (WiFi.status() == WL_CONNECTED)
     {
         Serial.printf("\nConnected! IP: %s\n", WiFi.localIP().toString().c_str());
+        display.showWiFiConnectionStatus("Connected: " + WiFi.localIP().toString());
     }
     else
     {
         Serial.println("\nWiFi connection failed!");
+        display.showWiFiConnectionStatus("Connection Failed");
     }
 }
 
