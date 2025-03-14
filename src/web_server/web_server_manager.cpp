@@ -39,7 +39,13 @@ void WebServerManager::handleScan() {
 void WebServerManager::handleSetWiFi() {
     String ssid = server.arg("ssid");
     String password = server.arg("password");
-    wifiManager.connectToWiFi(ssid.c_str(), password.c_str());
-    server.send(200, "text/html", "<h3>Attempting to connect...</h3>");
+
+    if (ssid.length() > 0 && password.length() > 0) {
+        wifiManager.connectToWiFi(ssid.c_str(), password.c_str());
+        // server.send(200, "text/html", "<h3>Attempting to connect...</h3>");
+        delay(2000);
+        // note: 再起動は無くても良いかもしれない
+        ESP.restart();
+    }
 }
 
