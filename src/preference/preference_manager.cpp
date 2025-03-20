@@ -21,6 +21,7 @@ void PreferenceManager::setPreference(const String key, const String value) {
 String PreferenceManager::getPreference(const String key) {
     preferences.begin("preference", true);
     String value =  preferences.getString(key.c_str(), "");
+    Serial.printf("Get preference: %s=%s\n", key.c_str(), value.c_str());
     preferences.end();
     return value;
 }

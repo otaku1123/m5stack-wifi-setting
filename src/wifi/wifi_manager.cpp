@@ -21,7 +21,7 @@ bool WiFiManager::connectToSavedWiFi()
     String ssid = pPreferenceManager->getPreference("ssid");
     String password = pPreferenceManager->getPreference("password");
 
-    Serial.printf("Saved Wi-Fi credentials: %s=%s\n", ssid.c_str(), password.c_str());
+    // Serial.printf("Saved Wi-Fi credentials: %s=%s\n", ssid.c_str(), password.c_str());
 
     if (ssid.length() == 0 || password.length() == 0)
     {
